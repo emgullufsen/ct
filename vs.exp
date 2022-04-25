@@ -1,0 +1,11 @@
+{
+global:
+	extern "C++" {
+		*A;
+		*B;
+		create;
+		destroy;
+	};
+
+local: *;
+};
