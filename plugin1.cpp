@@ -1,6 +1,6 @@
-#include "interface.hpp"
-#include <iostream>
 #include <memory>
+#include <iostream>
+#include "interface.hpp"
 
 struct plugin1 : plugin {
 	void do_stuff(std::shared_ptr<A> a) override {
@@ -20,7 +20,15 @@ struct plugin1 : plugin {
 	}
 	~plugin1(){}
 };
+/*
+extern "C" B* createb() {
+	return new B;
+}
 
+extern "C" void destroyb(B *b){
+	delete b;
+}
+*/
 extern "C" plugin* create() {
 	return new plugin1;
 }

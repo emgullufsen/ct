@@ -17,17 +17,21 @@ public:
 };
 
 struct A {
-	int aa;
+	virtual void funky() = 0;
 	virtual ~A(){}
-	virtual void funky() { std::cout << "A funky" << std::endl; }
-	void kfunky() { std::cout << "this works" << std::endl; }
+	int num();
 };
 
+int A::num() { return 33; }
+
 struct B : A {
-	int bb;
-	void  funky() override { std::cout << "B funky" << std::endl; }
+	void funky() override { 
+		std::cout << "B funky" << std::endl; 
+		return;
+	}
 	~B(){}
 };
+
 struct plugin
 {
 	virtual void do_stuff(std::shared_ptr<A>) {}
