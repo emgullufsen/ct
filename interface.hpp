@@ -1,3 +1,6 @@
+#ifndef CLANG_TYPEINFO_TESTER_H
+#define CLANG_TYPEINFO_TESTER_H
+
 #include <memory>
 #include <iostream>
 
@@ -17,19 +20,13 @@ public:
 };
 
 struct A {
+	virtual ~A();
 	virtual void funky() = 0;
-	virtual ~A(){}
-	int num();
 };
 
-int A::num() { return 33; }
-
 struct B : A {
-	void funky() override { 
-		std::cout << "B funky" << std::endl; 
-		return;
-	}
-	~B(){}
+	virtual ~B();
+	void funky() override;
 };
 
 struct plugin
@@ -38,5 +35,15 @@ struct plugin
 	virtual ~plugin(){}
 };
 
+A::~A(){}
+B::~B(){}
+
+void B::funky() { 
+	std::cout << "B funky" << std::endl; 
+	return;
+}
+
 typedef plugin* create_t();
 typedef void destroy_t(plugin*);
+
+#endif

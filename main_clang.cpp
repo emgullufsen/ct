@@ -2,9 +2,10 @@
 #include <dlfcn.h>
 #include <iostream>
 #include <memory>
+#include <typeinfo>
 
 int main(int argc, char **argv){
-	void *obj = dlopen("./libplugin1_dl.so",RTLD_LAZY);
+	void *obj = dlopen("./libpluginAA.so",RTLD_LOCAL);
 	// load the plugin1 library
 	if (!obj){
 		std::cout << "failed to open handle on .so" << std::endl;
@@ -30,7 +31,7 @@ int main(int argc, char **argv){
 	}
 
 	plugin* p = create_plugin1struct();
-	std::shared_ptr<A> a = std::make_shared<A>();
+	std::shared_ptr<A> a = std::make_shared<B>();
 	std::cout << "type of a:" << std::endl;
 	std::cout << typeid(a.get()).name() << std::endl;
 	p->do_stuff(a);
