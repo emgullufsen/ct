@@ -35,14 +35,6 @@ struct plugin
 	virtual ~plugin(){}
 };
 
-A::~A(){}
-B::~B(){}
-
-void B::funky() { 
-	std::cout << "B funky" << std::endl; 
-	return;
-}
-
 typedef plugin* create_t();
 typedef void destroy_t(plugin*);
 
